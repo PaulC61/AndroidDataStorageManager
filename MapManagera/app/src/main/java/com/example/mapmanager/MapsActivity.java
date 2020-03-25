@@ -58,9 +58,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                map.clear();
+                //map.clear();
                 map.addMarker(new MarkerOptions().position(latLng).title("New Location"));
-                map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 8));
+                //map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 8));
             }
         });
         map.setOnInfoWindowClickListener(this);
