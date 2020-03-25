@@ -18,12 +18,10 @@
         tools:context=".MapsActivity" />
 
     <Button
-        android:id="@+id/activity_maps_btn_load_map"
-        android:layout_width="0dp"
+        android:id="@+id/activity_maps_btn_clear_map"
+        android:layout_width="@dimen/fully_stretchable"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/default_margin"
-        android:layout_marginTop="@dimen/default_margin"
-        android:layout_marginEnd="@dimen/default_margin"
+        android:layout_margin="@dimen/default_margin"
         android:background="@drawable/btn_default_selector"
         android:text="@string/load_map"
         map:layout_constraintEnd_toEndOf="parent"
