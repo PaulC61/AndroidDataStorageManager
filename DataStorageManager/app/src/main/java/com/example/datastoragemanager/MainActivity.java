@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final static String EMPTY_STRING = "";
 
     private EditText etInfo;
+    private TextView tvUpdateInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         final Button btnOk = findViewById(R.id.btnOk);
         btnOk.setOnClickListener(this);
+
+        etInfo = findViewById(R.id.edtTextUpdate);
+        tvUpdateInfo = findViewById(R.id.textViewHello);
+    }
+
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        SharedPreferences sPrefs = getSharedPreferences(SHARED_PREFERENCES_FILENAME, MODE_PRIVATE);
+        String storedInfo = sPrefs.getString(UPDATE_INFO_KEY, getString(R.string.default_text));
+        tvUpdateInfo.setText(storedInfo);
     }
     //if we use this, it will always jump to the below method
     @Override
@@ -45,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             SharedPreferences sPrefs = getSharedPreferences(SHARED_PREFERENCES_FILENAME, MODE_PRIVATE);
             SharedPreferences.Editor sPrefsEditor = sPrefs.edit();
             sPrefsEditor.putString(UPDATE_INFO_KEY, simplifiedInfo);
-
+            sPrefsEditor.apply();
             etInfo.setText(EMPTY_STRING);
             Toast.makeText(this, "String '" + simplifiedInfo + "' is saved", Toast.LENGTH_SHORT).show();
         } else {
